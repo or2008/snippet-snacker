@@ -1,14 +1,19 @@
 {
   "name": "snippet-snacker",
+  "publisher": "or2008",
   "displayName": "Snippet Snacker",
   "description": "Snippet Snacker is a VS Code extension that makes sharing your code a breeze! Easily copy or append selected snippets along with file paths to your clipboard, ready to snack on by your favorite AI assistants. 🍕👩‍💻🚀",
   "version": "0.0.1",
   "engines": {
-    "vscode": "1.97.2"
+    "vscode": "1.98.0"
   },
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/or2008/snippet-snacker"
+  },
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
@@ -50,6 +55,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
+    "vscode:publish": "npm run vscode:prepublish && vsce package && vsce publish",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
