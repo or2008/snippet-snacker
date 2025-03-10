@@ -1,3 +1,5 @@
+![Snippet Snacker Banner](assets/banner.webp)
+
 # Snippet Snacker
 
 Welcome to **Snippet Snacker**—a VS Code extension that makes sharing code with your favorite AI assistants as easy as snacking! Quickly copy your selected code along with its relative file path, or append multiple snippets together, all from a nested context menu.
