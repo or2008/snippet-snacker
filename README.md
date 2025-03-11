@@ -31,13 +31,5 @@ Currently, **Snippet Snacker** does not contribute additional settings. Enjoy th
   The extension relies on the VS Code clipboard API, so its behavior may vary slightly between operating systems.
 - If you encounter any issues or unexpected behavior, please check the [GitHub issues page](https://github.com/or2008/snippet-snacker/issues) for support.
 
-## Release Notes
-
-### 0.0.1
-
-- Initial release of **Snippet Snacker**
-  - Added **Copy Selected Snippet** command
-  - Added **Copy and Append Selected Snippet** command
-  - Introduced a nested context menu for improved organization
 
 **Enjoy snacking on those code bites with Snippet Snacker!**

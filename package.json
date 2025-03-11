@@ -3,9 +3,9 @@
   "publisher": "or2008",
   "displayName": "Snippet Snacker",
   "description": "Snippet Snacker is a VS Code extension that makes sharing your code a breeze! Easily copy or append selected snippets along with file paths to your clipboard, ready to snack on by your favorite AI assistants. 🍕👩‍💻🚀",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
-    "vscode": "1.98.0"
+    "vscode": ">=1.98.0"
   },
   "categories": [
     "Other"

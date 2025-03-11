@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showErrorMessage('No code selected!');
 			return;
 		}
-		
+
 		const document = editor.document;
 		// Get the file path relative to the workspace root
 		const relativePath = vscode.workspace.asRelativePath(document.uri);
@@ -41,7 +41,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showErrorMessage('No code selected!');
 			return;
 		}
-		
+
 		const document = editor.document;
 		const relativePath = vscode.workspace.asRelativePath(document.uri);
 		const selectedCode = document.getText(selection);
@@ -61,4 +61,4 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(copySnippetDisposable, appendSnippetDisposable);
 }
 
-export function deactivate() {}
+export function deactivate() { }
