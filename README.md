@@ -2,20 +2,20 @@
 
 # Snippet Snacker
 
-Welcome to **Snippet Snacker**—a VS Code extension that makes sharing code with your favorite AI assistants as easy as snacking! Quickly copy your selected code along with its relative file path, or append multiple snippets together, all from a nested context menu.
+Welcome to **Snippet Snacker**—a VS Code extension that makes sharing code with your favorite AI assistants as easy as snacking! Quickly copy your selected code along with its relative file path, or capture code from all open documents, all from a neatly organized context menu.
 
 ## Features
 
-- **Copy Selected Snippet:**  
-  Right-click to copy the selected code along with the file’s relative path to your clipboard.
+- **Copy Selected Snippet with File Path:**  
+  Right-click on your selected code to copy it along with the file’s relative path directly to your clipboard.
 
-- **Copy and Append Selected Snippet:**  
-  Easily append additional code snippets to your clipboard without overwriting your previous selections.
+- **Copy All Open Documents:**  
+  With a single command, copy the entire contents of all currently open documents (tabs) along with their respective file paths.
 
 - **Nested Context Menu:**  
-  Find both commands neatly organized under the **Snippet Snacker** submenu when you right-click on a code selection.
+  All commands are organized under the **Snippet Snacker** submenu in the context menu for easy access.
 
-> **Tip:** Use these features to quickly assemble code excerpts to share with AI assistants, colleagues, or for later review!
+> **Tip:** Use these features to quickly compile code excerpts to share with AI assistants, colleagues, or for later review!
 
 ## Requirements
 
@@ -29,7 +29,6 @@ Currently, **Snippet Snacker** does not contribute additional settings. Enjoy th
 
 - **Clipboard Limitations:**  
   The extension relies on the VS Code clipboard API, so its behavior may vary slightly between operating systems.
-- If you encounter any issues or unexpected behavior, please check the [GitHub issues page](https://github.com/or2008/snippet-snacker/issues) for support.
-
+- For any issues or unexpected behavior, please check the [GitHub issues page](https://github.com/or2008/snippet-snacker/issues) for support.
 
 **Enjoy snacking on those code bites with Snippet Snacker!**
