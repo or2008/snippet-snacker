@@ -16,9 +16,6 @@
     "type": "git",
     "url": "https://github.com/or2008/snippet-snacker"
   },
-  "activationEvents": [
-    "onLanguage:*"
-  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
