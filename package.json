@@ -2,12 +2,13 @@
   "name": "snippet-snacker",
   "publisher": "or2008",
   "displayName": "Snippet Snacker",
-  "description": "Snippet Snacker is a VS Code extension that makes sharing your code a breeze! Easily copy or append selected snippets along with file paths to your clipboard, ready to snack on by your favorite AI assistants. 🍕👩‍💻🚀",
-  "version": "0.0.3",
+  "description": "Quickly copy code snippets with file paths or grab content from all open files.",
+  "version": "0.0.5",
   "engines": {
-    "vscode": ">=1.98.0"
+    "vscode": ">=1.99.3"
   },
   "categories": [
+    "Snippets",
     "Other"
   ],
   "icon": "assets/logo.webp",
@@ -15,43 +16,135 @@
     "type": "git",
     "url": "https://github.com/or2008/snippet-snacker"
   },
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:*"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "snippet-snacker.copySelectedSnippet",
-        "title": "Copy Selected Snippet"
+        "command": "snippetSnacker.copySelectionWithPath",
+        "title": "Snippet Snacker: Copy Selection with Path & Lines",
+        "category": "Snippet Snacker"
       },
       {
-        "command": "snippet-snacker.copyAndAppendSelectedSnippet",
-        "title": "Copy and Append Selected Snippet"
+        "command": "snippetSnacker.copyAllOpenFiles",
+        "title": "Snippet Snacker: Copy All Open Files with Paths",
+        "category": "Snippet Snacker"
+      },
+      {
+        "command": "snippetSnacker.copyProjectStructure",
+        "title": "Snippet Snacker: Copy Project Structure Tree",
+        "category": "Snippet Snacker"
+      },
+      {
+        "command": "snippetSnacker.bundleSelectedFiles",
+        "title": "Snippet Snacker: Bundle Selected Files for LLM",
+        "category": "Snippet Snacker"
+      },
+      {
+        "command": "snippetSnacker.copySelectionWithProblems",
+        "title": "Snippet Snacker: Copy Selection with Problems",
+        "category": "Snippet Snacker"
+      },
+      {
+        "command": "snippetSnacker.copySelectionWithImports",
+        "title": "Snippet Snacker: Copy Selection with Imports (File)",
+        "category": "Snippet Snacker"
       }
     ],
     "submenus": [
       {
-        "id": "snippet-snacker.submenu",
+        "id": "snippetSnackerSubmenu",
         "label": "Snippet Snacker"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "submenu": "snippet-snacker.submenu",
-          "when": "editorHasSelection",
-          "group": "navigation"
+          "submenu": "snippetSnackerSubmenu",
+          "group": "9_cutcopypaste@1",
+          "when": "editorTextFocus"
         }
       ],
-      "snippet-snacker.submenu": [
+      "snippetSnackerSubmenu": [
         {
-          "command": "snippet-snacker.copySelectedSnippet",
-          "group": "1_copy"
+          "command": "snippetSnacker.copySelectionWithPath",
+          "when": "editorHasSelection"
         },
         {
-          "command": "snippet-snacker.copyAndAppendSelectedSnippet",
-          "group": "2_append"
+          "command": "snippetSnacker.copySelectionWithImports",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "snippetSnacker.copySelectionWithProblems",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "snippetSnacker.copyAllOpenFiles",
+          "when": "editorIsOpen"
+        },
+        {
+          "command": "snippetSnacker.copyProjectStructure",
+          "when": "workspaceFolder"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "snippetSnacker.bundleSelectedFiles",
+          "when": "!explorerResourceIsFolder"
+        },
+        {
+          "command": "snippetSnacker.copyProjectStructure",
+          "when": "explorerResourceIsFolder"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "snippetSnacker.copyProjectStructure",
+          "when": "workspaceFolder"
+        },
+        {
+          "command": "snippetSnacker.copyAllOpenFiles",
+          "when": "editorIsOpen"
         }
       ]
+    },
+    "codeActions": [
+      {
+        "languages": [
+          "*"
+        ],
+        "providedCodeActionKinds": [
+          "RefactorExtract",
+          "Refactor"
+        ]
+      }
+    ],
+    "configuration": {
+      "title": "Snippet Snacker",
+      "properties": {
+        "snippetSnacker.projectStructure.excludePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "**/node_modules/**",
+            "**/.git/**",
+            "**/dist/**",
+            "**/build/**",
+            "**/out/**",
+            "**/.vscode/**"
+          ],
+          "description": "Glob patterns for folders/files to exclude when generating the project structure tree. Applied after .gitignore filtering if enabled."
+        },
+        "snippetSnacker.projectStructure.useGitignore": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to respect .gitignore rules when generating the project structure (relies on VS Code's default findFiles behavior)."
+        }
+      }
     }
   },
   "scripts": {
@@ -60,18 +153,18 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
+    "lint": "eslint src --ext ts",
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "1.98.0",
+    "@types/vscode": "1.99.1",
     "@types/mocha": "10.0.10",
-    "@types/node": "20.17.24",
-    "@typescript-eslint/eslint-plugin": "8.26.0",
-    "@typescript-eslint/parser": "8.26.0",
-    "eslint": "9.22.0",
-    "typescript": "5.8.2",
+    "@types/node": "20.17.31",
+    "@typescript-eslint/eslint-plugin": "8.31.0",
+    "@typescript-eslint/parser": "8.31.0",
+    "eslint": "9.25.1",
+    "typescript": "5.8.3",
     "@vscode/test-cli": "0.0.10",
-    "@vscode/test-electron": "2.4.1"
+    "@vscode/test-electron": "2.5.2"
   }
 }
